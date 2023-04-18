@@ -1,0 +1,38 @@
+
+body {
+  background-color: #ececece7;
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #ffffff;
+}
+
+.main-color {
+  background-color: #a80e0e ;
+}
+
+.strike-through-td {
+    text-decoration: line-through;
+}
+
+.item .m-1 {
+  align-content: end;
+}
+
+ul.navbar-nav.mr-auto {
+  margin-left: 60%;
+}
+
+.navbar-brand img {
+  width: 2.5rem;
+  height: 2rem;
+  background-color: #ffffff;
+  border-radius: 50%;
+  margin-left: 1rem;
+  padding: 2px;
+}
+
+
+

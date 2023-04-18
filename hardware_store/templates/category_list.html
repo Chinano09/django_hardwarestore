@@ -1,0 +1,60 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div class="card text-center">
+      <div class="card-header">
+        Categories
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">List of Categories!</h5>
+        <p class="card-text">To see the products in the category, click in a name!</p>
+    
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          {% if user.is_authenticated %}
+          <th scope="col">Actions</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+    
+      {% for category in category %}
+        <tr class="pointer" >
+    
+          <td>{{ category.id }}</td>
+          <td>
+            <button type="button" class="btn btn-primary"
+            onclick="productCategory({{category.id}})">
+              {{category.name}}
+            </button></td>
+          <td>{{ category.description }}</td>
+          <td>
+            {% if user.is_authenticated %}
+            <button type="button" class="btn btn-primary"
+                      onclick="editCategory({{category.id}})">
+              Edit
+            </button>
+            <button type="button" class="btn btn-danger"
+                      onclick="deleteCategory({{category.id}})">
+              Delete
+            </button> </td>
+            {% endif %}
+        </tr>
+      {% endfor %}
+    
+      </tbody>
+    </table>
+      {% if user.is_authenticated %}
+        <a href="{% url 'create-category' %}" class="btn btn-success">Add a new Category!</a>
+      {% endif %}
+      </div>
+    </div>
+ </div>
+
+{% endblock %}

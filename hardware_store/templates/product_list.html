@@ -1,0 +1,45 @@
+{% extends "main.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/create_pro.css' %}">
+
+<body>
+    {% if user.is_authenticated %}
+    <div class="container-fluid" style="margin-top: 10rem;">
+        <a href="{% url 'create-product' %}" class="btn btn-success btn-lg">Add a new Product!</a>
+    </div>
+    {% else %}
+    <div class="nothing" style="margin-top: 10rem;">
+    </div>
+    {% endif %}
+
+    <div class="container-fluid h-100">
+      <h1 style="margin-left: 30%; margin-right: 30%;">{{ category.name }}</h1>
+        <div class="row h-100">
+            <div class="col-">
+                <div class="row"> 
+                {% for product in products %}
+                    <div class="card d-flex flex-row" style="width: 100%">
+                        <div class="order-2" margin-top="1rem">
+                            <h1 class="card-title">{{ product.name }}</h1>
+                            <h3 class="card-text">Available stock: {{ product.stock }}</h3image.png>
+                            <h3 class="card-text">{{ product.price }}$</h3>
+                            {% if user.is_authenticated %}
+                            <div class="btn-group mt-3" role="group" aria-label="Product actions">
+                                <button type="button" class="btn btn-primary" onclick="editProduct({{product.id}})">Edit</button>
+                                <button type="button" class="btn btn-danger" onclick="deleteProduct({{product.id}})">Delete</button>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <img src="{{ product.image }}" style="max-width: 16%; max-height: 100%; margin-right: 2rem; margin-top: 0.5rem; margin-bottom: 0.5rem;" class="card-img-top" alt="{{product.name}}">
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
